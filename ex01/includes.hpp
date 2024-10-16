@@ -1,24 +1,28 @@
-	/* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   includes.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/15 14:53:58 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/15 14:54:17 by jedusser         ###   ########.fr       */
+/*   Created: 2024/10/16 11:20:39 by jedusser          #+#    #+#             */
+/*   Updated: 2024/10/16 13:47:07 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef  INCLUDES_H
+#define INCLUDES_H
+
+
 #include "PhoneBook.class.hpp"
 #include "Contact.class.hpp"
-#include "includes.hpp"
 #include <iostream>
 #include <string>
 
-int main()
-{
-    Contact instance1(setFirstName(), setLastName() , setNickName(), setPhoneNumber(), setDarkestSecret());
-	PhoneBook phoneBook(instance1);
-	
-}
+std::string setFirstName(void);
+std::string setLastName(void);
+std::string setNickName(void);
+std::string setPhoneNumber(void);
+std::string setDarkestSecret(void);
+
+#endif 

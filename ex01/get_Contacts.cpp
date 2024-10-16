@@ -1,12 +1,12 @@
-	/* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   get_Contacts.cpp                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/15 14:53:58 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/15 14:54:17 by jedusser         ###   ########.fr       */
+/*   Created: 2024/10/16 12:15:50 by jedusser          #+#    #+#             */
+/*   Updated: 2024/10/16 12:24:21 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,3 @@
 #include <iostream>
 #include <string>
 
-int main()
-{
-    Contact instance1(setFirstName(), setLastName() , setNickName(), setPhoneNumber(), setDarkestSecret());
-	PhoneBook phoneBook(instance1);
-	
-}
