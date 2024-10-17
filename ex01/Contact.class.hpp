@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:32:49 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/16 13:46:51 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/10/17 08:44:52 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,38 +17,36 @@
 #include <iostream>
 #include <string>
 class Contact {
-
+	
 	public:
-		//methods
-		
-		std::string setFirstName(void);
-		std::string setLastName(void);
-		std::string setNickName(void);
-		std::string setPhoneNumber(void);
-		std::string setDarkestSecret(void);
-		
+		// setters
+		void setFirstName(const std::string &first_name);
+		void setLastName(const std::string &last_name);
+		void setNickName(const std::string &nickname);
+		void setPhoneNumber(const std::string &phone_number);
+		void setDarkestSecret(const std::string &darkest_secret);
+
+		// getters
 		std::string getFirstName();
 		std::string getLastName();
 		std::string getNickname();
 		std::string getPhoneNumber();
 		std::string getDarkestSecret();
-		//init list
-		
-		Contact(std::string first_name,
-		std::string last_name,
-		std::string nickname,
-		std::string phone_number,
-		std::string darkest_secret);
+
+		// constructor with init list
+		Contact();
+		Contact(const std::string &first_name, const std::string &last_name,
+		const std::string &nickname, const std::string &phone_number,
+		const std::string &darkest_secret);
 		~Contact(void);
-	
+
 	private:
-		//attributes
+		// attributes
 		std::string first_name;
 		std::string last_name;
 		std::string nickname;
 		std::string phone_number;
 		std::string darkest_secret;
-		
 };
 
 #endif	

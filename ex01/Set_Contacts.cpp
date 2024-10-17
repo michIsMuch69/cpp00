@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 11:22:42 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/16 14:03:29 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/10/17 07:55:02 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,38 +16,28 @@
 #include <iostream>
 #include <string>
 
-void setFirstName(std::string &first_name)
+void Contact::setFirstName(const std::string &first_name)
 {
-    std::cout << "Enter First Name : ";
-    std::cin >> first_name;
-   // return (First_Name);
+   this->first_name = first_name;
 }
 
 
-void setLastName(std::string &last_name)
+void Contact::setLastName(const std::string &last_name)
 {
-    std::cout << "Enter Last Name : ";
-    std::cin >> last_name;
- //   return (Last_Name);
+    this->last_name = last_name;
 }
 
-void setNickName(std::string &nickname)
+void Contact::setNickName(const std::string &nickname)
 {
-    std::cout << "Enter Nickname : ";
-    std::cin >> nickname;
-   // return (NickName);
+   this->nickname = nickname;
 }
 
-void setPhoneNumber(std::string &phone_number)
+void Contact::setPhoneNumber(const std::string &phone_number)
 {
-    std::cout << "Enter Phone Number : ";
-    std::cin >> phone_number;
-   // return (PhoneNumber);
+    this->phone_number = phone_number;
 }
 
-void setDarkestSecret(std::string &darkest_secret)
+void Contact::setDarkestSecret(const std::string &darkest_secret)
 {
-    std::cout << "Enter Darkest Secret : ";
-    std::cin >> darkest_secret;
-   // return (DarkestSecret);
+    this->darkest_secret = darkest_secret;
 }

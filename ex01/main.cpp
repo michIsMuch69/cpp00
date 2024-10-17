@@ -18,17 +18,23 @@
 
 int main()
 {
-	std::string first_name;
-	std::string last_name;
-	std::string nickname;
-	std::string phone_number;
-	std::string darkest_secret;
-	setFirstName(first_name);
-	setLastName(last_name);
-	setNickName(nickname);
-	setPhoneNumber(phone_number);
-	setDarkestSecret(darkest_secret);
-    Contact instance1(first_name, last_name, nickname, phone_number, darkest_secret);
-	//PhoneBook phoneBook(instance1);
-	
+    PhoneBook phoneBook;
+    std::string command;
+    
+    while (true)
+    {
+        std::cout << "Enter command (ADD, SEARCH, EXIT): ";
+        std::cin >> command;
+        std::cout << std::endl;
+
+        if (command == "ADD")
+            phoneBook.addContact();
+        else if (command == "SEARCH")
+            phoneBook.searchContact();
+        else if (command == "EXIT")
+            break;
+        else
+            std::cout << "Invalid command!" << std::endl;
+    }
+    return 0;
 }
