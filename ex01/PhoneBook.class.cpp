@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:34:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/18 15:50:51 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/10/18 15:52:38 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void PhoneBook::addContact()
     std::cin.clear();
 
 
-    std::cin.ignore();
+   // std::cin.ignore();
 
     
     contacts[contactCount] = Contact(first_name, last_name, nickname, phone_number, darkest_secret);
