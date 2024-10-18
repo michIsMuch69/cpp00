@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:34:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/18 15:38:16 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/10/18 15:50:51 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,30 +57,26 @@ void PhoneBook::addContact()
     std::cout << "Enter first name: ";
     std::getline(std::cin, first_name);
     std::cin.clear();
-    std::cin.ignore();
     
-    std::cin.ignore();
     std::cout << "Enter last name: ";
     std::getline(std::cin, last_name);
     std::cin.clear();
     
-    std::cin.ignore();
     std::cout << "Enter nickname: ";
     std::getline(std::cin, nickname);
     std::cin.clear();
 
-    std::cin.ignore();
     std::cout << "Enter phone number: ";
     std::getline(std::cin, phone_number);
     std::cin.clear();
 
-    std::cin.ignore();
     std::cout << "Enter darkest secret: ";
     std::getline(std::cin, darkest_secret);
     std::cin.clear();
 
 
-    
+    std::cin.ignore();
+
     
     contacts[contactCount] = Contact(first_name, last_name, nickname, phone_number, darkest_secret);
         contactCount++;
