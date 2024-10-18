@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:34:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/18 14:07:46 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/10/18 15:38:16 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,37 @@ void PhoneBook::addContact()
     if (contactCount == 8)
         contactCount = 0;
     std::string first_name, last_name, nickname, phone_number, darkest_secret;
+   
+    std::cin.ignore();
+
     std::cout << "Enter first name: ";
-    std::cin >> first_name;
+    std::getline(std::cin, first_name);
+    std::cin.clear();
+    std::cin.ignore();
+    
+    std::cin.ignore();
     std::cout << "Enter last name: ";
-    std::cin >> last_name;
+    std::getline(std::cin, last_name);
+    std::cin.clear();
+    
+    std::cin.ignore();
     std::cout << "Enter nickname: ";
-    std::cin >> nickname;
+    std::getline(std::cin, nickname);
+    std::cin.clear();
+
+    std::cin.ignore();
     std::cout << "Enter phone number: ";
-    std::cin >> phone_number;
+    std::getline(std::cin, phone_number);
+    std::cin.clear();
+
+    std::cin.ignore();
     std::cout << "Enter darkest secret: ";
-    std::cin >> darkest_secret;
+    std::getline(std::cin, darkest_secret);
+    std::cin.clear();
+
+
+    
+    
     contacts[contactCount] = Contact(first_name, last_name, nickname, phone_number, darkest_secret);
         contactCount++;
     std::cout << "Contact added successfully!" << std::endl;
@@ -80,7 +101,7 @@ void PhoneBook::displayPhonebook()
 
     i = 0;
     std::string separator;
-    std::cout << "Available contacts:" << std::endl;
+    std::cout << "==================Available contacts===================" << std::endl;
     separator.replace(0, 40, 55, '_');
     std::cout << "   [Index]   " << " [First Name]  " << "[Last Name]   " << "[Nickname]" << std::endl;
     std::cout << separator << std::endl;
@@ -116,7 +137,6 @@ void PhoneBook::searchContact()
     std::cout << "Enter contact index to view details: ";
     std::cout << std::endl;
     std::cin >> index;
-    std::cout << "INDEX ENTERED --> " << index;
     std::cout << std::endl;
     if (index > 0 && index <= 8)
         displayContact(index - 1);
