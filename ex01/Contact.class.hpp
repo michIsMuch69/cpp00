@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:32:49 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/17 08:44:52 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/10/18 12:55:27 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ class Contact {
 		std::string getPhoneNumber();
 		std::string getDarkestSecret();
 
-		// constructor with init list
+		//default constructor
 		Contact();
+		// constructor with init list
 		Contact(const std::string &first_name, const std::string &last_name,
 		const std::string &nickname, const std::string &phone_number,
 		const std::string &darkest_secret);

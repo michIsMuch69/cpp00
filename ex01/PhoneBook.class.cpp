@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:34:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/18 11:37:16 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:01:49 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ PhoneBook::~PhoneBook(void)
 
 void PhoneBook::addContact()
 {
+    if (contactCount == 8)
+        contactCount = 0;
     std::string first_name, last_name, nickname, phone_number, darkest_secret;
     std::cout << "Enter first name: ";
     std::cin >> first_name;
@@ -43,11 +45,11 @@ void PhoneBook::addContact()
     std::cout << "Enter darkest secret: ";
     std::cin >> darkest_secret;
     contacts[contactCount] = Contact(first_name, last_name, nickname, phone_number, darkest_secret);
-    contactCount++;
+        contactCount++;
     std::cout << "Contact added successfully!" << std::endl;
 }
 
-void PhoneBook::parse_contact(std::string &string)
+void parse_info(std::string &string)
 {
     if (string.length() > 10)
     {
@@ -56,16 +58,45 @@ void PhoneBook::parse_contact(std::string &string)
     }
     string.insert(0, 10 - string.length(), ' ');
 }
-
+void parse_contacts(std::string &string1, std::string &string2, std::string &string3, std::string &string4)
+{
+    parse_info(string1);
+    parse_info(string2);
+    parse_info(string3);
+    parse_info(string4);
+}
 std::string int_to_str(int nb)
 {
     std::stringstream string;
     string << nb;
     return (string.str());
 }
-void PhoneBook::searchContact()
+void PhoneBook::displayPhonebook()
 {
     int i;
+
+    i = 0;
+    std::string separator;
+    std::cout << "Available contacts:" << std::endl;
+    separator.replace(0, 40, 55, '_');
+    std::cout << "   [Index]   " << " [First Name]  " << "[Last Name]   " << "[Nickname]" << std::endl;
+    std::cout << separator << std::endl;
+    while (i < contactCount)
+    {
+        std::string index = int_to_str(i + 1);
+        std::string first_name = contacts[i].getFirstName();
+        std::string last_name = contacts[i].getLastName();
+        std::string nick_name = contacts[i].getNickname();
+        parse_contacts(index, first_name, last_name, nick_name);
+        std::cout << "  " << index << " | " ;
+        std::cout << first_name << " | ";
+        std::cout << " " << last_name << " | ";
+        std::cout << " " << nick_name << std::endl;
+        i++;
+    }
+}
+void PhoneBook::searchContact()
+{
     int index;
     
     if (contactCount == 0)
@@ -73,37 +104,22 @@ void PhoneBook::searchContact()
         std::cout << "Phone book is empty!" << std::endl;
         return;
     }
-    std::cout << "Available contacts:" << std::endl;
-    i = 0;
-    while (i < contactCount)
-    {
-        std::string index = int_to_str(i);
-        std::string first_name = contacts[i].getFirstName();
-        std::string last_name = contacts[i].getLastName();
-        std::string nick_name = contacts[i].getNickname();
-        parse_contact(index);
-        parse_contact(first_name);
-        parse_contact(last_name);
-        parse_contact(nick_name);
-        std::cout << "  " << index << " | "  << first_name << " | " << " " << last_name << " | " << " " << nick_name<< std::endl;
-        i++;
-    }
+    displayPhonebook();
     std::cout << std::endl;
     std::cout << "Enter contact index to view details: ";
     std::cout << std::endl;
-
     std::cin >> index;
     std::cout << "INDEX ENTERED --> " << index;
-    std::cout<< std::endl;
-    if (index > 0 && index < contactCount)
-        displayContact(index );
+    std::cout << std::endl;
+    if (index > 0 && index <= contactCount)
+        displayContact(index - 1);
     else
         std::cout << "Invalid index!" << std::endl;
 }
 
 void PhoneBook::displayContact(int index)
 {
-    std::cout << "  Index : " << index;
+    std::cout << "  Index : " << index + 1;
     std::cout << std::endl;
     std::cout << "  First Name : " << contacts[index].getFirstName();
     std::cout << std::endl;
