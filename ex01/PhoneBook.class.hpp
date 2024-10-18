@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:29:35 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/17 08:06:01 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/10/18 09:47:02 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,14 @@ class PhoneBook {
 		void addContact();
 		void searchContact();
 		void displayContact(int index);
+		void parse_contact(std::string &string);
 		PhoneBook();
 		~PhoneBook(void);
 		
 	private:
 		Contact contacts[8];
 		int contactCount;
+
 	
 };
 

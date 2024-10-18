@@ -24,7 +24,10 @@ int main()
     while (true)
     {
         std::cout << "Enter command (ADD, SEARCH, EXIT): ";
+		std::cout << std::endl;
         std::cin >> command;
+		std::cout << "COMMAND ENTERED :" << command;
+        std::cout << std::endl;
         std::cout << std::endl;
 
         if (command == "ADD")

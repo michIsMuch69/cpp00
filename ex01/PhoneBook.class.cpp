@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:34:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/17 13:35:20 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/10/18 11:37:16 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "Contact.class.hpp"
 #include <iostream>
 #include <string>
+#include <sstream>
 
 PhoneBook::PhoneBook()
 {
@@ -30,9 +31,6 @@ PhoneBook::~PhoneBook(void)
 
 void PhoneBook::addContact()
 {
-    if (contactCount == 8)
-        contactCount = 0; 
-
     std::string first_name, last_name, nickname, phone_number, darkest_secret;
     std::cout << "Enter first name: ";
     std::cin >> first_name;
@@ -49,6 +47,22 @@ void PhoneBook::addContact()
     std::cout << "Contact added successfully!" << std::endl;
 }
 
+void PhoneBook::parse_contact(std::string &string)
+{
+    if (string.length() > 10)
+    {
+        string.erase(9);
+        string.push_back('.');
+    }
+    string.insert(0, 10 - string.length(), ' ');
+}
+
+std::string int_to_str(int nb)
+{
+    std::stringstream string;
+    string << nb;
+    return (string.str());
+}
 void PhoneBook::searchContact()
 {
     int i;
@@ -61,36 +75,44 @@ void PhoneBook::searchContact()
     }
     std::cout << "Available contacts:" << std::endl;
     i = 0;
-    while (i <= contactCount)
+    while (i < contactCount)
     {
+        std::string index = int_to_str(i);
         std::string first_name = contacts[i].getFirstName();
         std::string last_name = contacts[i].getLastName();
         std::string nick_name = contacts[i].getNickname();
-        
-        std::cout << i + 1 << " | "  << first_name << " | " << " " << last_name << std::endl;
+        parse_contact(index);
+        parse_contact(first_name);
+        parse_contact(last_name);
+        parse_contact(nick_name);
+        std::cout << "  " << index << " | "  << first_name << " | " << " " << last_name << " | " << " " << nick_name<< std::endl;
         i++;
     }
+    std::cout << std::endl;
     std::cout << "Enter contact index to view details: ";
+    std::cout << std::endl;
+
     std::cin >> index;
+    std::cout << "INDEX ENTERED --> " << index;
     std::cout<< std::endl;
-    std::cout<< index;
-    if (index > 0 && index <= contactCount)
-        displayContact(index - 1);
+    if (index > 0 && index < contactCount)
+        displayContact(index );
     else
         std::cout << "Invalid index!" << std::endl;
 }
 
 void PhoneBook::displayContact(int index)
 {
-    std::cout << index;
-    std::cout << " | ";
-    std::cout << "First Name: " << contacts[index].getFirstName();
-    std::cout << " | ";
-    std::cout << "Last Name: " << contacts[index].getLastName();
-    std::cout << " | ";
-    std::cout << "Nickname: " << contacts[index].getNickname();
-    std::cout << " | ";
-    std::cout << "Phone Number: " << contacts[index].getPhoneNumber();
-    std::cout << " | ";
-    std::cout << "Darkest Secret: " << contacts[index].getDarkestSecret() << std::endl;
+    std::cout << "  Index : " << index;
+    std::cout << std::endl;
+    std::cout << "  First Name : " << contacts[index].getFirstName();
+    std::cout << std::endl;
+    std::cout << "  Last Name : " << contacts[index].getLastName();
+    std::cout << std::endl;
+    std::cout << "  Nickname : " << contacts[index].getNickname();
+    std::cout << std::endl;
+    std::cout << "  Phone Number : " << contacts[index].getPhoneNumber();
+    std::cout << std::endl;
+    std::cout << "  Darkest Secret : " << contacts[index].getDarkestSecret() << std::endl;
+    std::cout << std::endl;
 }
