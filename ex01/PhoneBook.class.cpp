@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:34:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/18 13:43:47 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/10/18 14:07:46 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ std::string int_to_str(int nb)
     string << nb;
     return (string.str());
 }
+
+
 void PhoneBook::displayPhonebook()
 {
     int i;
@@ -88,6 +90,8 @@ void PhoneBook::displayPhonebook()
         std::string first_name = contacts[i].getFirstName();
         std::string last_name = contacts[i].getLastName();
         std::string nick_name = contacts[i].getNickname();
+        if (first_name == "")
+            break;
         parse_contacts(index, first_name, last_name, nick_name);
         std::cout << "  " << index << " | " ;
         std::cout << first_name << " | ";
