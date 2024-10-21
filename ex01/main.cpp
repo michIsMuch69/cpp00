@@ -21,7 +21,7 @@ int main()
     PhoneBook phoneBook;
     std::string command;
     
-    while (true)
+    while (true  && !std::cin.eof())
     {
         std::cout << "Enter command (ADD, SEARCH, EXIT): ";
 		std::cout << std::endl;

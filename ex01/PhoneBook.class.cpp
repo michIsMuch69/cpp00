@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.class.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: michismuch <michismuch@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:34:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/18 15:52:38 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:58:34 by michismuch       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void PhoneBook::addContact()
     std::string first_name, last_name, nickname, phone_number, darkest_secret;
    
     std::cin.ignore();
+    if (std::cin.eof())
+        return ;
 
     std::cout << "Enter first name: ";
     std::getline(std::cin, first_name);
