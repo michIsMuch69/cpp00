@@ -6,7 +6,7 @@
 /*   By: michismuch <michismuch@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:34:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/21 17:48:43 by michismuch       ###   ########.fr       */
+/*   Updated: 2024/10/21 18:09:45 by michismuch       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void PhoneBook::addContact()
     std::cin.clear();
 
     contacts[oldestIndex] = Contact(first_name, last_name, nickname, phone_number, darkest_secret);
-    oldestIndex = (oldestIndex + 1) % 8;
     if (contactCount < 8)
         contactCount++;
+    oldestIndex = (oldestIndex + 1) % 8;
 
     std::cout << "Contact added successfully!" << std::endl;
 }
@@ -105,7 +105,7 @@ void PhoneBook::displayPhonebook()
 
     while (i < contactCount)
     {
-        displayIndex = (oldestIndex + i) % 8;
+        displayIndex = (oldestIndex - 1 - i + 8) % 8;
         std::string index = int_to_str(i + 1);
         std::string first_name = contacts[displayIndex].getFirstName();
         std::string last_name = contacts[displayIndex].getLastName();
