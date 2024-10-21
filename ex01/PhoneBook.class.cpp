@@ -6,7 +6,7 @@
 /*   By: michismuch <michismuch@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 10:34:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/21 16:58:34 by michismuch       ###   ########.fr       */
+/*   Updated: 2024/10/21 17:48:43 by michismuch       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ PhoneBook::PhoneBook()
 {
     std::cout << "PB Constructor called" << std::endl;
     contactCount = 0;
+    oldestIndex = 0;
 }
 
 PhoneBook::~PhoneBook(void)
@@ -48,10 +49,8 @@ void parse_contacts(std::string &string1, std::string &string2, std::string &str
 }
 void PhoneBook::addContact()
 {
-    if (contactCount == 8)
-        contactCount = 0;
     std::string first_name, last_name, nickname, phone_number, darkest_secret;
-   
+    
     std::cin.ignore();
     if (std::cin.eof())
         return ;
@@ -76,12 +75,11 @@ void PhoneBook::addContact()
     std::getline(std::cin, darkest_secret);
     std::cin.clear();
 
-
-   // std::cin.ignore();
-
-    
-    contacts[contactCount] = Contact(first_name, last_name, nickname, phone_number, darkest_secret);
+    contacts[oldestIndex] = Contact(first_name, last_name, nickname, phone_number, darkest_secret);
+    oldestIndex = (oldestIndex + 1) % 8;
+    if (contactCount < 8)
         contactCount++;
+
     std::cout << "Contact added successfully!" << std::endl;
 }
 
@@ -96,6 +94,7 @@ std::string int_to_str(int nb)
 void PhoneBook::displayPhonebook()
 {
     int i;
+    int displayIndex;
 
     i = 0;
     std::string separator;
@@ -103,24 +102,26 @@ void PhoneBook::displayPhonebook()
     separator.replace(0, 40, 55, '_');
     std::cout << "   [Index]   " << " [First Name]  " << "[Last Name]   " << "[Nickname]" << std::endl;
     std::cout << separator << std::endl;
-    while (i < 8) // < contactCount
+
+    while (i < contactCount)
     {
+        displayIndex = (oldestIndex + i) % 8;
         std::string index = int_to_str(i + 1);
-        std::string first_name = contacts[i].getFirstName();
-        std::string last_name = contacts[i].getLastName();
-        std::string nick_name = contacts[i].getNickname();
-        if (first_name == "")
+        std::string first_name = contacts[displayIndex].getFirstName();
+        std::string last_name = contacts[displayIndex].getLastName();
+        std::string nick_name = contacts[displayIndex].getNickname();
+        if (first_name.empty())
             break;
         parse_contacts(index, first_name, last_name, nick_name);
-        std::cout << "  " << index << " | " ;
+        std::cout << "  " << index << " | ";
         std::cout << first_name << " | ";
         std::cout << " " << last_name << " | ";
         std::cout << " " << nick_name << std::endl;
         i++;
     }
     std::cout << separator << std::endl;
-
 }
+
 void PhoneBook::searchContact()
 {
     int index;
@@ -136,7 +137,7 @@ void PhoneBook::searchContact()
     std::cout << std::endl;
     std::cin >> index;
     std::cout << std::endl;
-    if (index > 0 && index <= 8)
+    if (index > 0 && index <= contactCount)
         displayContact(index - 1);
     else
         std::cout << "Invalid index!" << std::endl;

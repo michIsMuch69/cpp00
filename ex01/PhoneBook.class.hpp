@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.class.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
+/*   By: michismuch <michismuch@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:29:35 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/18 13:06:00 by jedusser         ###   ########.fr       */
+/*   Updated: 2024/10/21 17:12:18 by michismuch       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ class PhoneBook {
 	private:
 		Contact contacts[8];
 		int contactCount;
+		int oldestIndex;
 
 	
 };
