@@ -12,7 +12,6 @@
 
 #include "PhoneBook.class.hpp"
 #include "Contact.class.hpp"
-#include "includes.hpp"
 #include <iostream>
 #include <string>
 
@@ -21,6 +20,11 @@ int main()
     PhoneBook phoneBook;
     std::string command;
     
+    std::cout << "Phone Book Usage :" << std::endl << std::endl;
+    std::cout << "--> Enter \"ADD\" to add a new contact." << std::endl;
+    std::cout << "--> Enter \"SEARCH\" then the desired index to access the corresponding contact." << std::endl;
+    std::cout << "--> Enter \"EXIT\" to exit the program." << std::endl << std::endl;
+
     while (true  && !std::cin.eof())
     {
         std::cout << "Enter command (ADD, SEARCH, EXIT): ";
@@ -30,9 +34,9 @@ int main()
         std::cout << std::endl;
 
         if (command == "ADD")
-            phoneBook.addContact();
+            phoneBook._addContact();
         else if (command == "SEARCH")
-            phoneBook.searchContact();
+            phoneBook._searchContact();
         else if (command == "EXIT")
             break;
         else

@@ -6,7 +6,7 @@
 #    By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/15 15:22:05 by jedusser          #+#    #+#              #
-#    Updated: 2024/10/22 11:45:44 by jedusser         ###   ########.fr        #
+#    Updated: 2024/10/23 09:11:36 by jedusser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,17 +19,17 @@ OBJ_DIR = obj
 NAME = phonebook
 
 SRCS = main.cpp \
-       Contact.class.cpp \
-       PhoneBook.class.cpp \
-       get_Contacts.cpp \
-       Set_Contacts.cpp
+       Contact.cpp \
+       PhoneBook.cpp \
+       GetContact.cpp \
+       SetContact.cpp
 
 
 OBJS = $(OBJ_DIR)/main.o \
-       $(OBJ_DIR)/Contact.class.o \
-       $(OBJ_DIR)/PhoneBook.class.o \
-       $(OBJ_DIR)/get_Contacts.o \
-       $(OBJ_DIR)/Set_Contacts.o
+       $(OBJ_DIR)/Contact.o \
+       $(OBJ_DIR)/PhoneBook.o \
+       $(OBJ_DIR)/GetContact.o \
+       $(OBJ_DIR)/SetContact.o
 
 
 all: $(NAME)

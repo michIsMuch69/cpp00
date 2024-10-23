@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.class.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: michismuch <michismuch@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:29:35 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/21 17:12:18 by michismuch       ###   ########.fr       */
+/*   Updated: 2024/10/23 09:15:02 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 class PhoneBook {
 
 	public:
-		void addContact();
-		void searchContact();
-		void displayContact(int index);
-		void displayPhonebook();
+		void _addContact();
+		void _searchContact();
+		void _displayContact(int index);
+		void _displayPhonebook();
 		PhoneBook();
 		~PhoneBook(void);
 		
@@ -29,8 +29,6 @@ class PhoneBook {
 		Contact contacts[8];
 		int contactCount;
 		int oldestIndex;
-
-	
 };
 
 #endif	
