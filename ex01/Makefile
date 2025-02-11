@@ -5,13 +5,13 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/10/15 15:22:05 by jedusser          #+#    #+#              #
-#    Updated: 2024/10/23 09:11:36 by jedusser         ###   ########.fr        #
+#    Created: 2025/02/03 10:23:34 by jedusser          #+#    #+#              #
+#    Updated: 2025/02/06 09:46:09 by jedusser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -g3 -std=c++98
 
 SRC_DIR = .
 OBJ_DIR = obj
@@ -21,15 +21,18 @@ NAME = phonebook
 SRCS = main.cpp \
        Contact.cpp \
        PhoneBook.cpp \
-       GetContact.cpp \
-       SetContact.cpp
+	Contact.setters.cpp	\
+	Contact.getters.cpp \
+	parsing_utils.cpp
 
 
 OBJS = $(OBJ_DIR)/main.o \
        $(OBJ_DIR)/Contact.o \
        $(OBJ_DIR)/PhoneBook.o \
-       $(OBJ_DIR)/GetContact.o \
-       $(OBJ_DIR)/SetContact.o
+       $(OBJ_DIR)/Contact.setters.o \
+       $(OBJ_DIR)/Contact.getters.o \
+	   	$(OBJ_DIR)/parsing_utils.o
+
 
 
 all: $(NAME)

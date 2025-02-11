@@ -1,46 +1,64 @@
-	/* ************************************************************************** */
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/15 14:53:58 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/15 14:54:17 by jedusser         ###   ########.fr       */
+/*   Created: 2025/01/27 15:14:56 by jedusser          #+#    #+#             */
+/*   Updated: 2025/02/10 09:49:25 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.class.hpp"
-#include "Contact.class.hpp"
-#include <iostream>
-#include <string>
+#include "includes.hpp"
 
-int main()
+void give_instructions()
 {
-    PhoneBook phoneBook;
-    std::string command;
-    
-    std::cout << "Phone Book Usage :" << std::endl << std::endl;
+	std::cout << "Phone Book Usage :" << std::endl << std::endl;
     std::cout << "--> Enter \"ADD\" to add a new contact." << std::endl;
     std::cout << "--> Enter \"SEARCH\" then the desired index to access the corresponding contact." << std::endl;
     std::cout << "--> Enter \"EXIT\" to exit the program." << std::endl << std::endl;
-
-    while (true  && !std::cin.eof())
+}
+void PhoneBook::launch()
+{
+    int index = 0;
+    std::string command;
+    
+	give_instructions();
+    while (true)
     {
-        std::cout << "Enter command (ADD, SEARCH, EXIT): ";
-		std::cout << std::endl;
-        std::cin >> command;
-        std::cout << std::endl;
-        std::cout << std::endl;
-
-        if (command == "ADD")
-            phoneBook._addContact();
-        else if (command == "SEARCH")
-            phoneBook._searchContact();
-        else if (command == "EXIT")
+        std::cout << "\nEnter command (ADD, SEARCH, EXIT): ";
+        if (!std::getline(std::cin >> std::ws, command))
             break;
+        command.erase(command.find_last_not_of(" \t\n\r") + 1);
+        if (command.empty())
+            continue;
+        if (command == "ADD")
+        {
+            addContact(index);
+            index++;
+        }
+        else if (command == "SEARCH")
+        {
+            if (index > 0)
+            {
+                displayPhonebookSummary();
+                searchContacts();
+            }
+            else
+                std::cout << "Phonebook is empty, nothing to display." << std::endl;
+        }
+        else if (command == "EXIT")
+            return;
         else
-            std::cout << "Invalid command!" << std::endl;
+            std::cout << command << ": is not a valid command." << std::endl;
     }
+    std::cin.ignore();
+}
+
+int	main()
+{
+    PhoneBook phonebook;
+	phonebook.launch();
     return 0;
 }

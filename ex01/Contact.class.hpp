@@ -5,43 +5,54 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/15 14:32:49 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/23 09:20:30 by jedusser         ###   ########.fr       */
+/*   Created: 2025/01/27 15:10:19 by jedusser          #+#    #+#             */
+/*   Updated: 2025/02/10 12:53:46 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTACTCLASS_HPP
-#define CONTACTCLASS_HPP
+#ifndef CONTACT_CLASS_HPP
+#define CONTACT_CLASS_HPP
 
-#include "PhoneBook.class.hpp"
-#include <string>
-class Contact {
+#include "includes.hpp"
+
+class	Contact 
+{
+	private :
 	
-	public:
-		void _setFirstName(const std::string &first_name);
-		void _setLastName(const std::string &last_name);
-		void _setNickName(const std::string &nickname);
-		void _setPhoneNumber(const std::string &phone_number);
-		void _setDarkestSecret(const std::string &darkest_secret);
-
-		std::string _getFirstName();
-		std::string _getLastName();
-		std::string _getNickname();
-		std::string _getPhoneNumber();
-		std::string _getDarkestSecret();
-
-		Contact();
-		Contact(const std::string &first_name, const std::string &last_name,
-		const std::string &nickname, const std::string &phone_number,
+		std::string _first_name;
+		std::string _last_name;
+		std::string _nick_name;
+		std::string _phone_number;
+		std::string _darkest_secret;
+		
+	public : 
+	
+	/***********Constructors ***********/
+		
+		Contact();  
+		Contact(const std::string &first_name,const std::string &last_name,
+		const std::string &nick_name, const std::string &phone_number, 
 		const std::string &darkest_secret);
 		~Contact(void);
 
-	private:
-		std::string first_name;
-		std::string last_name;
-		std::string nickname;
-		std::string phone_number;
-		std::string darkest_secret;
+	/***********Methods****************/
+
+		std::string _getFirstName() const;
+		std::string _getLastName() const;
+		std::string _getNickName() const;
+		std::string _getPhoneNumber() const;
+		std::string _getDarkestSecret() const;
+		int        _setFirstName(const std::string &first_name);
+		int        _setLastName(const std::string &last_name);
+		int        _setNickName(const std::string &nick_name);
+		int        _setPhoneNumber(const std::string &phone_number);
+		int        _setDarkestSecret(const std::string &darkest_secret);
+		void displayContactSummary(Contact &contact, int index);
+		void displayContact(int index);
+		void displayContactField(const std::string &field_name, 
+		std::string(Contact::*getterFunction)() const, bool truncate);
+
+
 };
 
-#endif	
+#endif

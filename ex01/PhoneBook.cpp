@@ -5,162 +5,116 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 10:34:09 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/23 09:54:45 by jedusser         ###   ########.fr       */
+/*   Created: 2025/01/29 03:58:37 by michismuch        #+#    #+#             */
+/*   Updated: 2025/02/10 13:07:24 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "includes.hpp"
+
 #include "PhoneBook.class.hpp"
-#include "Contact.class.hpp"
-#include <iostream>
-#include <string>
-#include <sstream>
-#include <cctype>
+
 
 PhoneBook::PhoneBook()
 {
-    contactCount = 0;
-    oldestIndex = 0;
+    return ;
 }
 
-PhoneBook::~PhoneBook(void)
+PhoneBook::~PhoneBook()
 {
-    return;
+    return ;
 }
 
-void parse_info(std::string &string)
+void PhoneBook::getValidInput(const std::string &field_name,
+	int (Contact::*setterFunction)(const std::string &),
+	Contact &contact)
 {
-    if (string.length() > 10)
+	std::string user_input;
+	std::cout << COLOR_CYAN << field_name << " : " << COLOR_RESET;
+	while (std::getline(std::cin, user_input))
+	{
+		if (std::cin.eof())
+			break;
+		if ((contact.*setterFunction)(user_input) == 0)
+			break;
+		std::cout << COLOR_CYAN << field_name << " : " << COLOR_RESET;
+	}
+}
+
+void PhoneBook::addContact(int &index)
+{
+    if (index >= MAX_CONTACTS)
+                index = 0; 
+    std::cout << "\n" << COLOR_GREEN << "Adding new contact at index " 
+              << index + 1 << COLOR_RESET << std::endl;
+    getValidInput("First name", &Contact::_setFirstName, _contacts[index]);
+    getValidInput("Last name", &Contact::_setLastName, _contacts[index]);
+    getValidInput("Nick name", &Contact::_setNickName, _contacts[index]);
+    getValidInput("Phone number", &Contact::_setPhoneNumber, _contacts[index]);
+    getValidInput("Darkest secret", &Contact::_setDarkestSecret, _contacts[index]);
+    std::cout << COLOR_GREEN << "Contact added." << COLOR_RESET << std::endl;
+}
+
+
+void PhoneBook::displayPhonebookSummary()
+{
+    std::string separator(48, '_');
+
+    std::cout << "\n" << COLOR_MAGENTA 
+              << "=================== MY AWESOME PHONEBOOK ==================" 
+              << COLOR_RESET << std::endl;
+    std::cout << COLOR_YELLOW 
+              << std::setw(15) << std::left << "[Index][First name]"
+              << std::setw(15) << std::right << "[Last Name]" 
+              << std::setw(15) << "[Nickname]" 
+              << COLOR_RESET << std::endl;
+    for (int i = 0; i < MAX_CONTACTS; i++)
     {
-        string.erase(9);
-        string.push_back('.');
+        _contacts[i].displayContactSummary(_contacts[i], i);
+        separate_line();    
     }
-    string.insert(0, 10 - string.length(), ' ');
 }
-void parse_contacts(std::string &string1, std::string &string2, std::string &string3, std::string &string4)
+
+void PhoneBook::searchContacts()
 {
-    parse_info(string1);
-    parse_info(string2);
-    parse_info(string3);
-    parse_info(string4);
-}
-void PhoneBook::_addContact()
-{
-    std::string first_name, last_name, nickname, phone_number, darkest_secret;
-    
-    std::cin.ignore();
-    if (std::cin.eof())
-        return ;
-
-    std::cout << "Enter first name: ";
-    std::getline(std::cin, first_name);
-    std::cin.clear();
-    
-    std::cout << "Enter last name: ";
-    std::getline(std::cin, last_name);
-    std::cin.clear();
-    
-    std::cout << "Enter nickname: ";
-    std::getline(std::cin, nickname);
-    std::cin.clear();
-
-    std::cout << "Enter phone number: ";
-    std::getline(std::cin, phone_number);
-    std::cin.clear();
-
-    std::cout << "Enter darkest secret: ";
-    std::getline(std::cin, darkest_secret);
-    std::cin.clear();
-
-    contacts[oldestIndex] = Contact(first_name, last_name, nickname, phone_number, darkest_secret);
-    if (contactCount < 8)
-        contactCount++;
-    oldestIndex = (oldestIndex + 1) % 8;
-    int i = 0;
-
-    while (i < 8)
+    std::string input;
+	
+    while (true)
     {
-        std::string fstname;
-        fstname = this->contacts[i]._getFirstName();
-        std::cout << fstname << std ::endl;
-        i++;        
-    }
-    
-    std::cout << "Contact added successfully!" << std::endl;
-}
-
-std::string int_to_str(int nb)
-{
-    std::stringstream string;
-    string << nb;
-    return (string.str());
-}
-
-
-void PhoneBook::_displayPhonebook()
-{
-    int i;
-    int displayIndex;
-
-    i = 0;
-    std::string separator;
-    std::cout << "==================Available contacts===================" << std::endl;
-    separator.replace(0, 40, 55, '_');
-    std::cout << "   [Index]   " << " [First Name]  " << "[Last Name]   " << "[Nickname]" << std::endl;
-    std::cout << separator << std::endl;
-
-    while (i < contactCount)
-    {
-        displayIndex = (oldestIndex - 1 - i + 8) % 8;
-        std::string index = int_to_str(i + 1);
-        std::string first_name = contacts[displayIndex]._getFirstName();
-        std::string last_name = contacts[displayIndex]._getLastName();
-        std::string nick_name = contacts[displayIndex]._getNickname();
-        if (first_name.empty())
+        std::cout << "\n" << COLOR_CYAN 
+                  << "Enter index (0 to go back to commands): " 
+                  << COLOR_RESET;
+        if (!std::getline(std::cin, input) || std::cin.eof())
             break;
-        parse_contacts(index, first_name, last_name, nick_name);
-        std::cout << "  " << index << " | ";
-        std::cout << first_name << " | ";
-        std::cout << " " << last_name << " | ";
-        std::cout << " " << nick_name << std::endl;
-        i++;
+        input.erase(input.find_last_not_of(" \t\n\r") + 1);
+        if (input.length() != 1 || input.empty() || !std::isdigit(input[0]))
+        {
+            std::cout << COLOR_RED 
+                      << "Invalid input. Please enter a number between 1 and 8." 
+                      << COLOR_RESET << std::endl;
+            continue;
+        }
+        int idx = input[0] - '0';
+        if (idx == 0)
+            break;
+        if (idx < 1 || idx > MAX_CONTACTS)
+        {
+            std::cout << COLOR_RED 
+                      << "Index out of range. Please enter a valid index between 1 and 8" 
+                      << MAX_CONTACTS << "." 
+                      << COLOR_RESET << std::endl;
+            continue;
+        }
+        if (_contacts[idx - 1]._getFirstName().empty())
+        {
+            std::cout << COLOR_RED 
+                      << "No contact exists at index " << idx << "." 
+                      << COLOR_RESET << std::endl;
+            continue;
+        }
+        _contacts[idx - 1].displayContact(idx - 1);
+        std::cout << std::endl;
+        displayPhonebookSummary();
     }
-    std::cout << separator << std::endl;
 }
 
-void PhoneBook::_searchContact()
-{
-    int index;
-    
-    if (contactCount == 0)
-    {
-        std::cout << "Phone book is empty!" << std::endl;
-        return;
-    }
-    _displayPhonebook();
-    std::cout << std::endl;
-    std::cout << "Enter contact index to view details: ";
-    std::cout << std::endl;
-    std::cin >> index;
-    std::cout << std::endl;
-    if (index > 0 && index <= contactCount)
-        _displayContact(index - 1);
-    else
-        std::cout << "Invalid index!" << std::endl;
-}
-
-void PhoneBook::_displayContact(int index)
-{
-    std::cout << "  Index : " << index + 1;
-    std::cout << std::endl;
-    std::cout << "  First Name : " << contacts[index]._getFirstName();
-    std::cout << std::endl;
-    std::cout << "  Last Name : " << contacts[index]._getLastName();
-    std::cout << std::endl;
-    std::cout << "  Nickname : " << contacts[index]._getNickname();
-    std::cout << std::endl;
-    std::cout << "  Phone Number : " << contacts[index]._getPhoneNumber();
-    std::cout << std::endl;
-    std::cout << "  Darkest Secret : " << contacts[index]._getDarkestSecret() << std::endl;
-    std::cout << std::endl;
-}

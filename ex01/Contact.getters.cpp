@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   GetContact.cpp                                     :+:      :+:    :+:   */
+/*   Contact.getters.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 12:15:50 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/23 09:20:41 by jedusser         ###   ########.fr       */
+/*   Created: 2025/02/03 09:38:34 by jedusser          #+#    #+#             */
+/*   Updated: 2025/02/06 10:11:53 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.class.hpp"
-#include "Contact.class.hpp"
-#include <string>
+#include "includes.hpp"
 
-std::string Contact::_getFirstName()
+std::string Contact::_getFirstName()const
 {
-	return (this->first_name);
+   return (this->_first_name);
 }
 
-std::string Contact::_getLastName()
+std::string Contact::_getLastName()const
 {
-	return (this->last_name);
+    return (this->_last_name);
 }
-
-std::string Contact::_getNickname()
+std::string Contact::_getNickName()const
 {
-	return (this->nickname);
+    return (this->_nick_name);
 }
-std::string Contact::_getPhoneNumber()
+std::string Contact::_getPhoneNumber()const
 {
-	return (this->phone_number);
+    return (this->_phone_number);
 }
-std::string Contact::_getDarkestSecret()
+std::string Contact::_getDarkestSecret()const
 {
-	return (this->darkest_secret);
+    return (this->_darkest_secret);
 }
-

@@ -5,33 +5,61 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/15 14:31:32 by jedusser          #+#    #+#             */
-/*   Updated: 2024/10/23 09:20:39 by jedusser         ###   ########.fr       */
+/*   Created: 2025/01/29 03:56:56 by michismuch        #+#    #+#             */
+/*   Updated: 2025/02/10 13:13:15 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.class.hpp"
-#include "Contact.class.hpp"
-#include <string>
+#include "includes.hpp"
 
-Contact::Contact() :
-    first_name(""),
-    last_name(""),
-    nickname(""),
-    phone_number(""),
-    darkest_secret("")
+Contact::Contact()
 {
+    return ;
 }
 
-Contact::Contact(const std::string &first_name, const std::string &last_name,
-                 const std::string &nickname, const std::string &phone_number,
-                 const std::string &darkest_secret)
-    : first_name(first_name), last_name(last_name),
-      nickname(nickname), phone_number(phone_number),
-      darkest_secret(darkest_secret)
-{
+Contact::~Contact()
+{ 
+    return ;
 }
 
-Contact::~Contact(void)
+void Contact::displayContactSummary(Contact &contact, int index)
 {
+        std::string field;
+        
+        if (contact._getFirstName().empty())
+            return ;
+        std::cout << COLOR_BLUE; 
+        std::cout << "[" << index + 1 << "]";
+        
+        displayContactField("first Name", &Contact::_getFirstName, TRUNC_ON);
+        displayContactField("Last Name", &Contact::_getLastName, TRUNC_ON);
+        displayContactField("Nick Name", &Contact::_getNickName, TRUNC_ON);
+        std::cout << COLOR_RESET;
+}
+
+void Contact::displayContactField(const std::string &field_name, 
+        std::string(Contact::*getterFunction)() const, bool truncate)
+{
+    std::string field_content;
+    
+    field_content = (this->*getterFunction)();
+    if (truncate)
+    {
+        parse_info(field_content);
+        std::cout << std::setw(15) << std::right << field_content << "|" ;
+    }
+    else
+        std::cout  << COLOR_YELLOW << field_name << " : "<< COLOR_RESET << field_content << std::endl;
+}
+
+void Contact::displayContact(int index)
+{
+    std::cout << "\n" << COLOR_MAGENTA << "Contact nb [" 
+              << index + 1 << "]:" << COLOR_RESET << std::endl;
+    
+    displayContactField("First name", &Contact::_getFirstName, TRUNC_OFF);
+    displayContactField("Last name ", &Contact::_getLastName, TRUNC_OFF);
+    displayContactField("Nick name", &Contact::_getNickName, TRUNC_OFF);
+    displayContactField("Phone number", &Contact::_getPhoneNumber, TRUNC_OFF);
+    displayContactField("Darkest secret", &Contact::_getDarkestSecret, TRUNC_OFF);
 }
