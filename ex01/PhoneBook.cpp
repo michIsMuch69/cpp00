@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 03:58:37 by michismuch        #+#    #+#             */
-/*   Updated: 2025/02/10 13:07:24 by jedusser         ###   ########.fr       */
+/*   Updated: 2025/02/13 11:29:13 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void PhoneBook::displayPhonebookSummary()
               << COLOR_RESET << std::endl;
     for (int i = 0; i < MAX_CONTACTS; i++)
     {
-        _contacts[i].displayContactSummary(_contacts[i], i);
-        separate_line();    
+        if (!_contacts[i]._getFirstName().empty())
+            _contacts[i].displayContactSummary(i);
     }
 }
 

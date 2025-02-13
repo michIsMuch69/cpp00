@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 15:10:19 by jedusser          #+#    #+#             */
-/*   Updated: 2025/02/10 12:53:46 by jedusser         ###   ########.fr       */
+/*   Updated: 2025/02/13 11:28:37 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ class	Contact
 		int        _setNickName(const std::string &nick_name);
 		int        _setPhoneNumber(const std::string &phone_number);
 		int        _setDarkestSecret(const std::string &darkest_secret);
-		void displayContactSummary(Contact &contact, int index);
+		void displayContactSummary(int index);
 		void displayContact(int index);
 		void displayContactField(const std::string &field_name, 
 		std::string(Contact::*getterFunction)() const, bool truncate);

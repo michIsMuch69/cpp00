@@ -6,12 +6,12 @@
 #    By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/03 10:23:34 by jedusser          #+#    #+#              #
-#    Updated: 2025/02/06 09:46:09 by jedusser         ###   ########.fr        #
+#    Updated: 2025/02/13 11:00:08 by jedusser         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -g3 -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC_DIR = .
 OBJ_DIR = obj
@@ -37,7 +37,7 @@ OBJS = $(OBJ_DIR)/main.o \
 
 all: $(NAME)
 
-$(NAME): $(OBJS) 
+$(NAME): $(OBJS) Makefile
 	@echo "Building $(NAME)"
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 

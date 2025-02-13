@@ -6,7 +6,7 @@
 /*   By: jedusser <jedusser@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 03:56:56 by michismuch        #+#    #+#             */
-/*   Updated: 2025/02/10 13:13:15 by jedusser         ###   ########.fr       */
+/*   Updated: 2025/02/13 11:28:24 by jedusser         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,30 @@
 
 Contact::Contact()
 {
-    return ;
+    // return ;
 }
 
 Contact::~Contact()
 { 
-    return ;
+    // return ;
 }
 
-void Contact::displayContactSummary(Contact &contact, int index)
+void Contact::displayContactSummary(int index)
 {
         std::string field;
         
-        if (contact._getFirstName().empty())
-            return ;
+        // if (contact._getFirstName().empty())
+        // {
+        //     std::cout << "empty" << std::endl;
+        //     return ;
+        // }
         std::cout << COLOR_BLUE; 
         std::cout << "[" << index + 1 << "]";
         
         displayContactField("first Name", &Contact::_getFirstName, TRUNC_ON);
         displayContactField("Last Name", &Contact::_getLastName, TRUNC_ON);
         displayContactField("Nick Name", &Contact::_getNickName, TRUNC_ON);
+        separate_line();  
         std::cout << COLOR_RESET;
 }
 
@@ -42,6 +46,7 @@ void Contact::displayContactField(const std::string &field_name,
 {
     std::string field_content;
     
+   
     field_content = (this->*getterFunction)();
     if (truncate)
     {
